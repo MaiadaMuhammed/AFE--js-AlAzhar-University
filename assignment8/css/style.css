@@ -1,0 +1,19 @@
+body {
+  background-color: #dfe0e2bb;
+ ;
+}
+
+.container {
+  margin-top: 80px;
+}
+.container .lead{
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.582);
+}
+
+form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
