@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 30px;
+  background: #f9f9f9;
+}
+
+input,
+button {
+  margin: 5px;
+  padding: 8px;
+}
+#list {
+  margin-top: 20px;
+}
+.item {
+  margin-bottom: 5px;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+#list .item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#totalQuantity {
+  font-weight: bold;
+  margin-top: 15px;
+  color: #0d6efd;
+}
+
+@media (max-width: 576px) {
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group > input,
+  .input-group > button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
