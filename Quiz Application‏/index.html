@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title>تدبر - Quiz App</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              arabic: ['"IBM Plex Sans Arabic"', "sans-serif"],
+            },
+          },
+        },
+        darkMode: "class",
+      };
+    </script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      window.jspdf = window.jspdf || {};
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-arabic"
+  >
+    <!-- زر الوضع الليلي -->
+    <button
+      id="toggleDarkMode"
+      class="fixed top-4 left-4 bg-gray-800 text-white px-3 py-1 rounded-md dark:bg-white dark:text-black"
+    >
+      🌓
+    </button>
+
+    <!-- رأس الصفحة -->
+    <header
+      class="bg-blue-900 text-white text-center p-4 rounded-lg w-11/12 mx-auto mt-4"
+    >
+      <h1 class="text-2xl font-bold">تدبر</h1>
+      <p class="text-sm">
+        كِتَابٌ أَنْزَلْنَاهُ إِلَيْكَ مُبَارَكٌ لِيَدَّبَّرُوا آيَاتِهِ
+      </p>
+      <p class="text-sm">إِنَّ فِي ذَلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+    </header>
+
+    <!-- إعدادات المستخدم -->
+    <div
+      class="settings text-center max-w-md mx-auto mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow"
+    >
+      <input
+        type="text"
+        id="username"
+        placeholder="ادخل اسمك"
+        class="w-full p-2 mb-3 rounded-md border"
+      />
+      <div class="mb-3">
+        <label class="block mb-1">اختر المستوى:</label>
+        <div class="flex justify-center gap-2">
+          <button
+            data-level="easy"
+            class="level-btn bg-blue-100 px-3 py-1 rounded"
+          >
+            سهل
+          </button>
+          <button
+            data-level="medium"
+            class="level-btn bg-blue-100 px-3 py-1 rounded"
+          >
+            متوسط
+          </button>
+          <button
+            data-level="hard"
+            class="level-btn bg-blue-100 px-3 py-1 rounded"
+          >
+            صعب
+          </button>
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1">عدد الأسئلة:</label>
+        <input
+          type="number"
+          id="questionNumber"
+          min="1"
+          max="20"
+          value="5"
+          class="w-full p-2 rounded-md border"
+        />
+      </div>
+      <button
+        id="startQuiz"
+        class="mt-4 w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
+      >
+        ابدأ الاختبار
+      </button>
+    </div>
+
+    <!-- الاختبار -->
+    <div
+      class="quiz-app hidden max-w-4xl mx-auto mt-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow"
+    >
+      <div class="quiz-info flex flex-wrap justify-between mb-4">
+        <div>التصنيف: <span id="category">أسئلة دينية</span></div>
+        <div>مستوى الصعوبة: <span id="difficulty">متوسط</span></div>
+        <div>عدد الأسئلة: <span id="total">0</span></div>
+        <div>
+          السؤال <span id="current">0</span> من <span id="total">0</span>
+        </div>
+      </div>
+      <div class="quiz-area"></div>
+      <div class="answers-area"></div>
+      <div class="feedback my-4"></div>
+      <button
+        class="submit-button w-full text-white p-2 rounded-md"
+      >
+        إرسال الإجابة
+      </button>
+      <div class="bullets flex items-center justify-between mt-4">
+        <div class="spans flex gap-2"></div>
+        <div class="countdown font-bold text-red-500"></div>
+      </div>
+    </div>
+
+    <!-- النتيجة -->
+    <div class="results text-center mt-6"></div>
+    <canvas id="resultChart" class="mx-auto my-4 max-w-xs"></canvas>
+    <div class="text-center">
+      <button
+        id="downloadPdf"
+        class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700"
+      >
+        تحميل النتيجة PDF
+      </button>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
